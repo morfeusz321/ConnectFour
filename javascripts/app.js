@@ -91,6 +91,42 @@ const getCellLocation = (cell)=>{
     return [rowNumber,colNumber]
 };
 
+const CheckForWin = () => {
+    for (const row of rows){
+        for (let i = 0;i<4;i++){
+            const first = getClassListArray(row[i]);
+            const second = getClassListArray(row[i+1]);
+            const third = getClassListArray(row[i+2]);
+            const fourth = getClassListArray(row[i+3]);
+            const toCheck = yellowIsNext ? 'yellow' : 'red';
+            if(first.includes(toCheck)&&second.includes(toCheck)&&third.includes(toCheck)&&fourth.includes(toCheck)){
+                row[i].classList.add('win');
+                row[i+1].classList.add('win');
+                row[i+2].classList.add('win');
+                row[i+3].classList.add('win');
+                return true;
+            }
+        }
+    }
+    for (const col of columns){
+        for (let i = 0;i<4;i++){
+            const first = getClassListArray(col[i]);
+            const second = getClassListArray(col[i+1]);
+            const third = getClassListArray(col[i+2]);
+            const fourth = getClassListArray(col[i+3]);
+            const toCheck = yellowIsNext ? 'yellow' : 'red';
+            if(first.includes(toCheck)&&second.includes(toCheck)&&third.includes(toCheck)&&fourth.includes(toCheck)){
+                col[i].classList.add('win');
+                col[i+1].classList.add('win');
+                col[i+2].classList.add('win');
+                col[i+3].classList.add('win');
+                return true;
+            }
+        }
+    }
+    return false;
+};
+
 const getFirstPossibleCell = (colIndex) =>{
     const column= columns[colIndex];
     const columnWithOutTop=column.slice(0,6);
@@ -140,6 +176,9 @@ const handleCellClick = (e) =>{
     cellToPlay.classList.add(yellowIsNext ? 'yellow': 'red');
 
     //ToDo check for the state of the game
+    if(CheckForWin()){
+        status.textContent=yellowIsNext ? 'yellow' : 'red';
+    };
     yellowIsNext = !yellowIsNext;
     clearTop(colIndex);
 }
