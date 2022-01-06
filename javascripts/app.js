@@ -157,7 +157,7 @@ const clearTop = (colIndex) => {
 };
 
 
-//clears the board for the new game 
+//clears the board for the new game and removes the status
 const cleanBoard = () =>{
     for (const row of rows){
         for(const cell of row){
@@ -166,6 +166,7 @@ const cleanBoard = () =>{
            cell.classList.remove('win');
         }
     }
+    status.textContent='';
 }
 
 //Event Handlers
