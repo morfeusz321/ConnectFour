@@ -91,7 +91,11 @@ const getCellLocation = (cell)=>{
     return [rowNumber,colNumber]
 };
 
+//Checks if somebody has won if so returns true
 const CheckForWin = () => {
+
+
+    //--------check every row for 4 connected
     for (const row of rows){
         for (let i = 0;i<4;i++){
             const first = getClassListArray(row[i]);
@@ -108,6 +112,9 @@ const CheckForWin = () => {
             }
         }
     }
+
+
+    //-----Check for every column for connected 4
     for (const col of columns){
         for (let i = 0;i<4;i++){
             const first = getClassListArray(col[i]);
@@ -124,6 +131,9 @@ const CheckForWin = () => {
             }
         }
     }
+
+
+    //check every daiagonal
     return false;
 };
 
@@ -145,6 +155,18 @@ const clearTop = (colIndex) => {
     topCell.classList.remove(yellowIsNext ? 'red' : 'yellow');
     topCell.classList.add(yellowIsNext ? 'yellow' : 'red');
 };
+
+
+//clears the board for the new game 
+const cleanBoard = () =>{
+    for (const row of rows){
+        for(const cell of row){
+           cell.classList.remove('yellow');
+           cell.classList.remove('red');
+           cell.classList.remove('win');
+        }
+    }
+}
 
 //Event Handlers
 const handleMouseOver = (e) =>{
@@ -193,3 +215,5 @@ for (const row of rows){
         cell.addEventListener('click',handleCellClick);
     }
 }
+
+reset.addEventListener('click',cleanBoard);
