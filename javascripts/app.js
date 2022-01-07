@@ -94,6 +94,7 @@ const getCellLocation = (cell)=>{
 //Checks if somebody has won if so returns true
 const CheckForWin = () => {
 
+    const toCheck = yellowIsNext ? 'yellow' : 'red';
 
     //--------check every row for 4 connected
     for (const row of rows){
@@ -102,7 +103,6 @@ const CheckForWin = () => {
             const second = getClassListArray(row[i+1]);
             const third = getClassListArray(row[i+2]);
             const fourth = getClassListArray(row[i+3]);
-            const toCheck = yellowIsNext ? 'yellow' : 'red';
             if(first.includes(toCheck)&&second.includes(toCheck)&&third.includes(toCheck)&&fourth.includes(toCheck)){
                 row[i].classList.add('win');
                 row[i+1].classList.add('win');
@@ -121,7 +121,6 @@ const CheckForWin = () => {
             const second = getClassListArray(col[i+1]);
             const third = getClassListArray(col[i+2]);
             const fourth = getClassListArray(col[i+3]);
-            const toCheck = yellowIsNext ? 'yellow' : 'red';
             if(first.includes(toCheck)&&second.includes(toCheck)&&third.includes(toCheck)&&fourth.includes(toCheck)){
                 col[i].classList.add('win');
                 col[i+1].classList.add('win');
@@ -134,6 +133,39 @@ const CheckForWin = () => {
 
 
     //check every daiagonal
+    for (let i =3;i<7;i++){
+        for(let j=0;j<3;j++){
+            const first = getClassListArray((columns[i])[j]);
+            const second =getClassListArray((columns[i-1])[j+1]);
+            const third = getClassListArray((columns[i-2])[j+2]);
+            const fourth = getClassListArray((columns[i-3])[j+3])
+            if(first.includes(toCheck)&&second.includes(toCheck)&&third.includes(toCheck)&&fourth.includes(toCheck)){
+                (columns[i])[j].classList.add('win');
+                (columns[i-1])[j+1].classList.add('win');
+                (columns[i-2])[j+2].classList.add('win');
+                (columns[i-3])[j+3].classList.add('win');
+                return true;
+            }
+        }
+    }
+    for (let i =3;i<7;i++){
+        for(let j=3;j<6;j++){
+            console.log((columns[i])[j],(columns[i-1])[j-1],(columns[i-2])[j-2],(columns[i-3])[j-3]);
+            const first = getClassListArray((columns[i])[j]);
+            const second =getClassListArray((columns[i-1])[j-1]);
+            const third = getClassListArray((columns[i-2])[j-2]);
+            const fourth = getClassListArray((columns[i-3])[j-3])
+            if(first.includes(toCheck)&&second.includes(toCheck)&&third.includes(toCheck)&&fourth.includes(toCheck)){
+                (columns[i])[j].classList.add('win');
+                (columns[i-1])[j-1].classList.add('win');
+                (columns[i-2])[j-2].classList.add('win');
+                (columns[i-3])[j-3].classList.add('win');
+                return true;
+            }
+        }
+    }
+
+
     return false;
 };
 
