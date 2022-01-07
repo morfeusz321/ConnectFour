@@ -1,9 +1,8 @@
 const cells = document.querySelectorAll('.cell:not(.row-top)');
 const topCells = document.querySelectorAll('.cell.row-top');
-const reset = document.querySelector('.reset');
-const status = document.querySelector('.status');
 const winningMessage = document.querySelector('.winning-message');
-
+const newGameButton = document.querySelector('#newGameButton');
+const winningText = document.querySelector('[data-winning-message-text]');
 
 //now we will create an array for each column in bottom up fashion with extra element of class row top
 
@@ -204,21 +203,6 @@ const clearTop = (colIndex) => {
 };
 
 
-//clears the board for the new game and removes the status
-const cleanBoard = () =>{
-    for (const row of rows){
-        for(const cell of row){
-            cell.classList.remove('yellow');
-            cell.classList.remove('red');
-            cell.classList.remove('win');
-            cell.addEventListener('mouseover',handleMouseOver);
-            cell.addEventListener('mouseout',handleMouseOut);
-            cell.addEventListener('click',handleCellClick);
-        }
-    }
-    status.textContent='';
-}
-
 //Event Handlers
 const handleMouseOver = (e) =>{
     const cell= e.target;
@@ -250,7 +234,7 @@ const handleCellClick = (e) =>{
 
     //ToDo check for the state of the game
     if(CheckForWin()){
-        status.textContent=yellowIsNext ? 'yellow' : 'red';
+        winningText.textContent=yellowIsNext ? 'Yellow wins' : 'Red wins';
         removeListners();
         winningMessage.classList.add('show');
 
@@ -259,7 +243,21 @@ const handleCellClick = (e) =>{
     clearTop(colIndex);
 }
 
+//clears the board for the new game and removes the status
+const cleanBoard = () =>{
+    for (const row of rows){
+        for(const cell of row){
+            cell.classList.remove('yellow');
+            cell.classList.remove('red');
+            cell.classList.remove('win');
+            cell.addEventListener('mouseover',handleMouseOver);
+            cell.addEventListener('mouseout',handleMouseOut);
+            cell.addEventListener('click',handleCellClick);
+        }
+    }
+    winningMessage.classList.remove('show');
+}
 
 
-reset.addEventListener('click',cleanBoard);
-reset.click();
+newGameButton.addEventListener('click',cleanBoard);
+newGameButton.click();
