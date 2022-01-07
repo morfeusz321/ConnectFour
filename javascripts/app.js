@@ -2,6 +2,7 @@ const cells = document.querySelectorAll('.cell:not(.row-top)');
 const topCells = document.querySelectorAll('.cell.row-top');
 const reset = document.querySelector('.reset');
 const status = document.querySelector('.status');
+const winningMessage = document.querySelector('.winning-message');
 
 
 //now we will create an array for each column in bottom up fashion with extra element of class row top
@@ -133,6 +134,8 @@ const CheckForWin = () => {
 
 
     //check every daiagonal
+
+    //checks desending diagonals
     for (let i =3;i<7;i++){
         for(let j=0;j<3;j++){
             const first = getClassListArray((columns[i])[j]);
@@ -148,6 +151,8 @@ const CheckForWin = () => {
             }
         }
     }
+
+    //checks ascending diagonals
     for (let i =3;i<7;i++){
         for(let j=3;j<6;j++){
             console.log((columns[i])[j],(columns[i-1])[j-1],(columns[i-2])[j-2],(columns[i-3])[j-3]);
@@ -182,6 +187,16 @@ const getFirstPossibleCell = (colIndex) =>{
     return null;
 };
 
+const removeListners = () => {
+    for (const row of rows){
+        for(const cell of row){
+            cell.removeEventListener('mouseover',handleMouseOver);
+            cell.removeEventListener('mouseout',handleMouseOut);
+            cell.removeEventListener('click',handleCellClick);
+        }
+    }    
+}
+
 const clearTop = (colIndex) => {
     const topCell=topCells[colIndex];
     topCell.classList.remove(yellowIsNext ? 'red' : 'yellow');
@@ -193,9 +208,12 @@ const clearTop = (colIndex) => {
 const cleanBoard = () =>{
     for (const row of rows){
         for(const cell of row){
-           cell.classList.remove('yellow');
-           cell.classList.remove('red');
-           cell.classList.remove('win');
+            cell.classList.remove('yellow');
+            cell.classList.remove('red');
+            cell.classList.remove('win');
+            cell.addEventListener('mouseover',handleMouseOver);
+            cell.addEventListener('mouseout',handleMouseOut);
+            cell.addEventListener('click',handleCellClick);
         }
     }
     status.textContent='';
@@ -233,20 +251,15 @@ const handleCellClick = (e) =>{
     //ToDo check for the state of the game
     if(CheckForWin()){
         status.textContent=yellowIsNext ? 'yellow' : 'red';
+        removeListners();
+        winningMessage.classList.add('show');
+
     };
     yellowIsNext = !yellowIsNext;
     clearTop(colIndex);
 }
 
 
-// now we will create eventListiners
-
-for (const row of rows){
-    for(const cell of row){
-        cell.addEventListener('mouseover',handleMouseOver);
-        cell.addEventListener('mouseout',handleMouseOut);
-        cell.addEventListener('click',handleCellClick);
-    }
-}
 
 reset.addEventListener('click',cleanBoard);
+reset.click();
