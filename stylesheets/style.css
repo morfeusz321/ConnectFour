@@ -1,8 +1,6 @@
-*::after,*::before{
-    box-sizing: border-box;
+html{
+  height: 100%;
 }
-
-
 header .container, footer .container{
     width: 100vw;
     display: flex;
@@ -10,8 +8,6 @@ header .container, footer .container{
     justify-content: center;
 }
 header{
-    overflow: auto;
-    min-width: 855px;
     background-color: skyblue;
 }
 
@@ -19,8 +15,6 @@ header .image{
     width: 285px;
 }
 header img{
-    size: 50%;
-    height: auto;
     max-width: 100%;
 }
 
@@ -57,12 +51,10 @@ footer p{
 }
 
 footer .container .Filip{
-    float: left;
     width: 285px;
 }
 
 footer .container .Minh{
-    float: right;
     width: 285px;
 }
 * {
@@ -72,13 +64,11 @@ footer .container .Minh{
   }
   
   body {
-    align-items: center;
     background: white;
-    display: flex;
-    flex-direction: column;
     font-family: sans-serif;
     padding: 25px;
     width: 100%;
+    height:100%;
   }
   
   h1 {
@@ -146,13 +136,6 @@ footer .container .Minh{
     border: 3px solid black;
   }
   
-  .footer {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    width: 700px;
-  }
-  
   .reset {
     background-color: #4370F1;
     border-radius: 5px;
@@ -175,12 +158,6 @@ footer .container .Minh{
     background-color: #4d7ef1;
   
   }
-  
-  .status {
-    display: block;
-    font-size: 20px;
-  }
-  
   /* Util CSS */
   .left-border {
     border-left: 3px solid black;
