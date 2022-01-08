@@ -30,7 +30,6 @@
     border-radius: 50%;
     border: 1px solid black;
     content: '';
-    cursor: pointer;
     height: 30px;
     width: 30px;
 }
