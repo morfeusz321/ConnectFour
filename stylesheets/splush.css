@@ -18,12 +18,14 @@
     position: relative;
 }
 h3{
-    color: black;
+    color: #99CCFF;
+    font-family: 'JetBrains Mono', monospace;
 }
 
 .massage{
-    top: 200px;
+    top: 20%;
     position: absolute;
+    right: 40%;
 }
 .cell {
     align-items: center;
