@@ -15,6 +15,15 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url(./splush.svg);
+    position: relative;
+}
+h3{
+    color: black;
+}
+
+.massage{
+    top: 200px;
+    position: absolute;
 }
 .cell {
     align-items: center;
@@ -23,6 +32,8 @@
     height: 40px;
     justify-content: center;
     width: 40px;
+    transition: all 1s;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .cell::after {
@@ -47,4 +58,23 @@
 .left{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+}
+
+/* .container:first-child::after{
+    transform: translateY(-60%);
+}
+
+.cell.red.second.up::after{
+    transform: translateY(-60%);
+}
+
+.cell.yellow.third.up::after{
+    transform: translateY(-60%);
+}
+
+.cell.yellow.rigth.fourth.up::after{
+    transform: translateY(-60%);
+} */
+.cell.up{
+    transform: translateY(-60%);
 }
