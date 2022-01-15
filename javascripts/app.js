@@ -243,7 +243,8 @@ const handleCellClick = (e) =>{
         winningText.textContent=yellowIsNext ? 'Yellow wins' : 'Red wins';
         removeListners();
         winningMessage.classList.add('show');
-
+        //stops the clock
+        stopClock;
     };
     yellowIsNext = !yellowIsNext;
     clearTop(colIndex);
@@ -251,6 +252,13 @@ const handleCellClick = (e) =>{
 
 //clears the board for the new game and removes the status
 const cleanBoard = () =>{
+    //reset number of pieces on the board
+    numberOfRedPieces=0;
+    numberOfYellowPieces=0;
+    BoxForRedPieces.innerHTML = numberOfRedPieces;
+    BoxForYellowPieces.innerHTML = numberOfYellowPieces;
+
+    //clear the board and add event listners
     for (const row of rows){
         for(const cell of row){
             cell.classList.remove('yellow');
@@ -262,8 +270,45 @@ const cleanBoard = () =>{
         }
     }
     winningMessage.classList.remove('show');
+    startClock;
 }
 
 
 newGameButton.addEventListener('click',cleanBoard);
 newGameButton.click();
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Clock section 
+
+let seconds = 0;
+let minutes = 0;
+let intevral;
+const secondsOnTimer = document.querySelector('.seconds');
+const minutesOnTimer = document.querySelector('.minutes');
+// functionality of the clock
+function ruuningClock () {
+    seconds++;
+    if(seconds<=9){
+        secondsOnTimer.innerHTML = "0" + seconds;
+    }
+    if(seconds>9){
+        secondsOnTimer.innerHTML = seconds;
+    }
+    if(seconds>59){
+        secondsOnTimer.innerHTML = "00";
+        seconds = 0;
+        minutes++;
+    }
+    minutesOnTimer.innerHTML = minutes;
+};
+// starts the clock
+function startClock () {
+    intevral = setInterval(ruuningClock,1000);
+};
+//stops the clock
+function stopClock () {
+    clearInterval(intevral);
+    seconds = 0;
+    minutes = 0;
+};
+
