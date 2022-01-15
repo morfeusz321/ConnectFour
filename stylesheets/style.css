@@ -1,4 +1,6 @@
-
+:root{
+  --cos:70vh;
+}
 header .container, footer .container{
     display: flex;
     gap:20em;
@@ -70,23 +72,82 @@ footer .container .Minh{
   h1 {
     text-transform: uppercase;
   }
+
+  .center{
+    display: flex;
+    justify-content: center;
+  }
+
+  .circle-yellow, .circle-red{
+    display: flex;
+    height: calc(var(--cos)/7);
+    justify-content: center;
+    width: calc(var(--cos)/7);
+    align-items: center;
+  }
+
+  .circle-yellow::after, .circle-red::after{
+    border-radius: 50%;
+    border: 3px solid black;
+    content: '';
+    cursor: pointer;
+    height: calc(var(--cos)*75/700);
+    width: calc(var(--cos)*75/700);
+  }
+
+  .circle-yellow::after{
+    background: yellow;
+  }
+
+  .circle-red::after{
+    background: red;
+  }
+
+  .info{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 20vw;
+  }
+
+  .count{
+    display: flex;
+    border-radius: 10px;
+    border: 3px solid black;
+    margin-left: 10%;
+    box-shadow: 0 4px 8px grey;
+  }
+  
+  .timer{
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000C66;
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px grey;
+    margin-top: 30%;
+    margin-left: 10%;
+  }
   
   .game-board {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(7, 1fr);
-    height: 700px;
+    height: var(--cos);
     margin: 10px 0 25px;
-    width: 700px;
+    width: var(--cos);
   }
   
   .cell {
     align-items: center;
     background: skyblue;
     display: flex;
-    height: 100px;
+    height: calc(var(--cos)/7);
     justify-content: center;
-    width: 100px;
+    width: calc(var(--cos)/7);
   }
   
   .cell::after {
@@ -95,8 +156,8 @@ footer .container .Minh{
     border: 3px solid black;
     content: '';
     cursor: pointer;
-    height: 75px;
-    width: 75px;
+    height: calc(var(--cos)*75/700);
+    width: calc(var(--cos)*75/700);
   }
   
   .cell:not(.row-top).red::after {
