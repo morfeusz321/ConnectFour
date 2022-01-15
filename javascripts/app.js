@@ -3,6 +3,8 @@ const topCells = document.querySelectorAll('.cell.row-top');
 const winningMessage = document.querySelector('.winning-message');
 const newGameButton = document.querySelector('#newGameButton');
 const winningText = document.querySelector('[data-winning-message-text]');
+const BoxForYellowPieces = document.querySelector('.number-yellow h1');
+const BoxForRedPieces = document.querySelector('.number-red h1');
 
 //now we will create an array for each column in bottom up fashion with extra element of class row top
 
@@ -63,6 +65,8 @@ const rows = [row0, row1, row2, row3, row4, row5, topRow];
 
 let gameIsOn = true;
 let yellowIsNext = true;
+let numberOfYellowPieces = 0;
+let numberOfRedPieces = 0;
 
 //Functions
 
@@ -231,6 +235,8 @@ const handleCellClick = (e) =>{
     if(cell===null) return;
 
     cellToPlay.classList.add(yellowIsNext ? 'yellow': 'red');
+    // Updates the number of pieces put on the board
+    !yellowIsNext ? BoxForRedPieces.innerHTML=++numberOfRedPieces : BoxForYellowPieces.innerHTML=++numberOfYellowPieces;
 
     //ToDo check for the state of the game
     if(CheckForWin()){

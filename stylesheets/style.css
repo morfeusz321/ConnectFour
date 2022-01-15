@@ -118,7 +118,20 @@ footer .container .Minh{
     margin-left: 10%;
     box-shadow: 0 4px 8px grey;
   }
-  
+
+  .number-red,.number-yellow{
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: bold;
+  }
+
+  .count h1{
+    font-size: 2em;
+  }
+
   .timer{
     height: 10%;
     display: flex;
@@ -130,6 +143,9 @@ footer .container .Minh{
     box-shadow: 0 4px 8px grey;
     margin-top: 30%;
     margin-left: 10%;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
   }
   
   .game-board {
