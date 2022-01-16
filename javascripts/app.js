@@ -5,6 +5,8 @@ const newGameButton = document.querySelector('#newGameButton');
 const winningText = document.querySelector('[data-winning-message-text]');
 const BoxForYellowPieces = document.querySelector('.number-yellow h1');
 const BoxForRedPieces = document.querySelector('.number-red h1');
+const secondsOnTimer = document.querySelector('.seconds');
+const minutesOnTimer = document.querySelector('.minutes');
 
 //now we will create an array for each column in bottom up fashion with extra element of class row top
 
@@ -67,6 +69,41 @@ let gameIsOn = true;
 let yellowIsNext = true;
 let numberOfYellowPieces = 0;
 let numberOfRedPieces = 0;
+let intevral;
+let seconds = 0;
+let minutes = 0;
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Clock section 
+
+// functionality of the clock
+function ruuningClock () {
+    seconds++;
+    if(seconds<=9){
+        secondsOnTimer.innerHTML = "0" + seconds;
+    }
+    if(seconds>9){
+        secondsOnTimer.innerHTML = seconds;
+    }
+    if(seconds>59){
+        secondsOnTimer.innerHTML = "00";
+        seconds = 0;
+        minutes++;
+    }
+    minutesOnTimer.innerHTML = minutes;
+};
+// starts the clock
+function startClock () {
+    intevral = setInterval(ruuningClock,1000);
+    console.log(intevral);
+};
+//stops the clock
+function stopClock () {
+    clearInterval(intevral);
+    seconds = 0;
+    minutes = 0;
+};
 
 //Functions
 
@@ -270,45 +307,12 @@ const cleanBoard = () =>{
         }
     }
     winningMessage.classList.remove('show');
-    startClock;
 }
 
 
 newGameButton.addEventListener('click',cleanBoard);
+newGameButton.addEventListener('click',startClock);
 newGameButton.click();
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Clock section 
 
-let seconds = 0;
-let minutes = 0;
-let intevral;
-const secondsOnTimer = document.querySelector('.seconds');
-const minutesOnTimer = document.querySelector('.minutes');
-// functionality of the clock
-function ruuningClock () {
-    seconds++;
-    if(seconds<=9){
-        secondsOnTimer.innerHTML = "0" + seconds;
-    }
-    if(seconds>9){
-        secondsOnTimer.innerHTML = seconds;
-    }
-    if(seconds>59){
-        secondsOnTimer.innerHTML = "00";
-        seconds = 0;
-        minutes++;
-    }
-    minutesOnTimer.innerHTML = minutes;
-};
-// starts the clock
-function startClock () {
-    intevral = setInterval(ruuningClock,1000);
-};
-//stops the clock
-function stopClock () {
-    clearInterval(intevral);
-    seconds = 0;
-    minutes = 0;
-};
 

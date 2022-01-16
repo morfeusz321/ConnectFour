@@ -67,7 +67,6 @@ footer .container .Minh{
   body {
     background: white;
     font-family: sans-serif;
-    padding: 25px;
   }
   
   h1 {
@@ -210,28 +209,6 @@ footer .container .Minh{
     border: 3px solid black;
   }
   
-  .reset {
-    background-color: #4370F1;
-    border-radius: 5px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    display: block;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 15px 30px;
-    text-transform: uppercase;
-    margin: 10px;
-  }
-  
-  .reset:hover {
-    background-color: #1D50F1;
-  }
-  
-  .reset:active {
-    background-color: #4d7ef1;
-  
-  }
   /* Util CSS */
   .left-border {
     border-left: 3px solid black;
@@ -293,14 +270,36 @@ footer .container .Minh{
   #newGameButton{
     width: 200px;
     height: 50px;
+    border-radius: 30px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
+    transition: transform 0.3 ease;
+  }
+
+  #newGameButton::after,#newGameButton::before{
+    content: '';
+    opacity: 0.3;
+    background-color: white;
+    border-radius: inherit;
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: transform 0.3 ease;
   }
 
   #newGameButton:hover{
-    background-color: black;
-    color: white;
+    transform: translate(-12px,-12px);
   }
+  #newGameButton:hover::after{
+    transform: translate(6px,6px);
+  }
+  #newGameButton:hover::after{
+    transform: translate(12px,12px);
+  }
+
 
   .show{
     display: flex;

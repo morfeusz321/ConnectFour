@@ -62,21 +62,7 @@ h3{
     border-bottom-left-radius: 10px;
 }
 
-/* .container:first-child::after{
-    transform: translateY(-60%);
-}
 
-.cell.red.second.up::after{
-    transform: translateY(-60%);
-}
-
-.cell.yellow.third.up::after{
-    transform: translateY(-60%);
-}
-
-.cell.yellow.rigth.fourth.up::after{
-    transform: translateY(-60%);
-} */
 .cell.up{
     transform: translateY(-60%);
 }
